@@ -1,3 +1,7 @@
+$supports_rems: true !default;
+$font-size-base: 16px !default;
+
+
 @function remove-unit($number) {
   @return $number / ($number * 0 + 1);
 }
