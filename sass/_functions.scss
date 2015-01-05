@@ -1,0 +1,25 @@
+@function remove-unit($number) {
+  @return $number / ($number * 0 + 1);
+}
+
+@function em($value) {
+  @return (remove-unit($value) / remove-unit($font-size-base)) * 1em;
+}
+
+@function rem($value) {
+  @if $supports_rems {
+    @return (remove-unit($value) / remove-unit($font-size-base)) * 1rem;
+  }
+  @else {
+    @return (remove-unit($value) * 1px);
+  }
+}
+
+@function px($value) {
+  @if $supports_rems {
+    @return (remove-unit($value) * $font-size-base);
+  }
+  @else {
+    @return (remove-unit($value) * 1px);
+  }
+}

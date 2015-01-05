@@ -3,10 +3,9 @@
   "version": "0.0.0",
   "description": "Lost My Name mixins and functions for use on all the things",
   "author": "barneyfoxuk",
-  "main": "js/jester.helper.js",
+  "main": "sass/mixins.scss",
   "dependencies": {
-    "browserify": "^6.2.0",
-    "jquery": "^2.1.1"
+    "browserify": "^6.2.0"
   },
   "devDependencies": {
     "browser-sync": "^1.5.1",
@@ -22,7 +21,8 @@
     "jshint-stylish": "^1.0.0",
     "mocha": "^2.0.1",
     "should": "^4.2.0",
-    "vinyl-source-stream": "^1.0.0"
+    "vinyl-source-stream": "^1.0.0",
+    "lmn.tarantula": "^0.2.2"
   },
   "scripts": {
     "test": "open 'http://localhost:3001/demo/tests.html'",
