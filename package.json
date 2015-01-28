@@ -1,6 +1,6 @@
 {
   "name": "lmn.jester.helper",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Lost My Name mixins and functions for use on all the things",
   "author": "barneyfoxuk",
   "main": "sass/mixins.scss",
