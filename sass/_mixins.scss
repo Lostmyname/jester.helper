@@ -19,18 +19,16 @@ $image-breakpoints: (
 }
 
 
-@mixin responsiveBg($path, $ext, $size) {
+@mixin responsiveBg($path, $ext) {
+  background-image: image-url("#{$path}-large.#{$ext}");
 
-  // background-image: url( #{$path}-large.#{$ext});
-
-  // @media  only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi) {
-  //   background-image: url( #{$path}-xlarge.#{$ext});
-  //   background-size: $size;
-  // }
+  @media  only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi) {
+    background-image: image-url("#{$path}-xlarge.#{$ext}");
+  }
   
-  // @each $breakpoint in $image-breakpoints {
-  //   @media(max-width: #{nth($breakpoint, 2)}) {
-  //     background-image: url( #{$path}-#{nth($breakpoint, 1)}.#{$ext});
-  //   }
-  // }
+  @each $bp-name, $bp-value  in $image-breakpoints {
+    @media(max-width: $bp-value) {
+      background-image: image-url("#{$path}-#{$bp-name}.#{$ext}");
+    }
+  }
 }
