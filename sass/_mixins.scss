@@ -3,6 +3,10 @@ $image-breakpoints: (
   'small': 320px
 )!default;
 
+$languages: 'de', 'es', 'fr', 'en-US';
+
+
+
 @mixin on($_device) {
   @each $breakpoint in $device-media-expressions {
     $device: nth($breakpoint, 1);
@@ -29,6 +33,25 @@ $image-breakpoints: (
   @each $bp-name, $bp-value  in $image-breakpoints {
     @media(max-width: $bp-value) {
       background-image: image-url("#{$path}-#{$bp-name}.#{$ext}");
+    }
+  }
+}
+
+
+@mixin multilingualBg($selector, $path, $sub_langs: false) {
+  $dot-index: str-index($path, '.');
+  $file-name: str-slice($path, 0, $dot-index - 1);
+  $ext: str-slice($path, $dot-index, str-length($path));
+
+  @if type-of($sub_langs) == bool {
+    $langs: $languages
+  } @else {
+    $langs: $sub_langs
+  }
+
+  @each $lang in $langs {
+    :lang(#{$lang}) #{$selector} {
+      background-image: image-url("#{$file-name}-#{$lang}#{$ext}");
     }
   }
 }
