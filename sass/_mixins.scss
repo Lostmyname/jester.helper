@@ -23,17 +23,30 @@ $languages: 'de', 'es', 'fr', 'en-US';
 }
 
 
-@mixin responsiveBg($path, $ext) {
-  background-image: image-url("#{$path}-large.#{$ext}");
+@mixin responsiveBg($path, $width: 'auto') {
+  $dot-index: str-index($path, '.');
+  $file-name: str-slice($path, 0, $dot-index - 1);
+  $ext: str-slice($path, $dot-index, str-length($path));
 
-  @media  only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi) {
-    background-image: image-url("#{$path}-xlarge.#{$ext}");
-  }
+  @include retinaBg($path, $width);
   
   @each $bp-name, $bp-value  in $image-breakpoints {
     @media(max-width: $bp-value) {
-      background-image: image-url("#{$path}-#{$bp-name}.#{$ext}");
+      background-image: image-url("#{$file-name}-#{$bp-name}#{$ext}");
     }
+  }
+}
+
+@mixin retinaBg($path, $width) {
+  $dot-index: str-index($path, '.');
+  $file-name: str-slice($path, 0, $dot-index - 1);
+  $ext: str-slice($path, $dot-index, str-length($path));
+  
+  background-image: image-url("#{$file-name}-large#{$ext}");
+
+  @media  only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi) {
+    background-image: image-url("#{$file-name}-xlarge#{$ext}");
+    background-size: #{($width/2)}px;
   }
 }
 
